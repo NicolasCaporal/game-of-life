@@ -8,16 +8,12 @@ void setup() {
   size(960, 704);
   surface.setTitle("Game of Life");
   stroke(30);
-  delay(0);
-  // rectMode(CENTER); // borrar
   board = new Board(60, 44, cellSide);
   constrain(frameRate, 5, 60);
 }
 
 void mousePressed() {
-  if (mouseButton == LEFT) {
-    board.clickCell();
-  }
+  board.clickCell();
 }
 
 void keyPressed() {
@@ -36,11 +32,10 @@ void keyPressed() {
 }
 
 void draw() {
-  background(200);  // Limpiar el fondo en cada fotograma
+  background(200);
   board.display(pause);
-  if (!pause){
+  if (!pause) {
     println(frameRate);
   }
   frameRate(pause ? 60 : fr);
-  //println("(", mouseX/16, ",", mouseY/16, ")");
 }

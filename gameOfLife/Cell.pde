@@ -5,7 +5,6 @@ class Cell {
   private int side;
   private Cell[] neighbors;
   private boolean previousState;
-  ;
 
   Cell(int posX, int posY, int side) {
     this.posX = posX;
