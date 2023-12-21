@@ -3,13 +3,17 @@ class Cell {
   private int posX;
   private int posY;
   private int side;
-  //private Cell[] neighbors;
+  private Cell[] neighbors;
 
   Cell(int posX, int posY, int side) {
     this.posX = posX;
     this.posY = posY;
     this.side = side;
     this.isAlive = false;
+  }
+
+  public void setNeighbors(Cell[] neighbors){
+    this.neighbors = neighbors;
   }
 
   private boolean mouseIsOn() {
@@ -29,5 +33,24 @@ class Cell {
   public void display() {
     fill(isAlive ? 240 : 20);
     rect(posX, posY, side, side);
+  }
+  
+  public boolean getIsAlive(){
+    return this.isAlive;
+  }
+  
+  public void checkState(){
+      int count = 0;
+      for (int i = 0; i<8; i++){
+        if (this.neighbors[i].getIsAlive()){
+          count++;
+        }
+      }
+      
+      if (!(this.isAlive) && (count == 3)){
+        this.changeState();
+      } else if ((this.isAlive) && ((count > 3) || (count < 2))) {
+        this.changeState();
+      }
   }
 }

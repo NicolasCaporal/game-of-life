@@ -1,12 +1,14 @@
 Cell cell;
 Board board;
 final int cellSide = 16;
+boolean pause = true;
 
 void setup() {
   size(960, 704);
+  surface.setTitle("Game of Life");
   stroke(30);
+  delay(0);
   // rectMode(CENTER); // borrar
-  //cell = new Cell(100, 100);
   board = new Board(60, 44, cellSide);
   
 }
@@ -17,9 +19,18 @@ void mousePressed() {
   }
 }
 
+void keyPressed(){
+  if (key == ' '){
+      pause = !pause;
+  } else if (key == 'r' || key == 'R'){
+    board = new Board(60, 44, cellSide);
+  }
+}
 
 void draw() {
   background(200);  // Limpiar el fondo en cada fotograma  
-  board.display();
-  //println(mouseX, "(",mouseX/16, ",", mouseY/16, ")");
+  board.display(pause);
+  println(pause, frameRate);
+  delay(pause ? 0 : 200);
+  //println("(", mouseX/16, ",", mouseY/16, ")");
 }
